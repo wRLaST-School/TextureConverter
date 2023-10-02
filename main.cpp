@@ -25,10 +25,7 @@ int main(int argc, char* argv[]) {
 
 	converter.ConvertTextureWIC2DDS(argv[FILE_PATH]);
 
-	for (int i = 0; i < argc; i++)
-	{
-		cout << argv[i] << endl;
-	}
+	cout << "Loading " << argv[FILE_PATH] << endl;
 
 	//Close Com
 	CoUninitialize();

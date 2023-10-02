@@ -1,6 +1,5 @@
 #include "TextureConverter.h"
 #include "Util.h"
-#include <DirectXTex.h>
 
 using namespace DirectX;
 

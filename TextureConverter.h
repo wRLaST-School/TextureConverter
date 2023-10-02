@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <DirectXTex.h>
 class TextureConverter
 {
 public:
@@ -12,8 +13,8 @@ private:
 
 	void SaveDDSTextureToFile();
 
-	TexMetadata metadata_;
-	ScratchImage scratchImage_;
+	DirectX::TexMetadata metadata_;
+	DirectX::ScratchImage scratchImage_;
 
 	std::wstring folderPath_;
 	std::wstring fileName_;
