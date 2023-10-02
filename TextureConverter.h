@@ -8,5 +8,15 @@ public:
 
 private:
 	void LoadWICTexture(const std::string& filePath);
+	void SeparatePath(const std::wstring& filePath);
+
+	void SaveDDSTextureToFile();
+
+	TexMetadata metadata_;
+	ScratchImage scratchImage_;
+
+	std::wstring folderPath_;
+	std::wstring fileName_;
+	std::wstring fileExtension_;
 };
 
