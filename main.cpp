@@ -23,7 +23,10 @@ int main(int argc, char* argv[]) {
 
 	TextureConverter converter;
 
-	converter.ConvertTextureWIC2DDS(argv[FILE_PATH]);
+	int32_t numOptions = argc - NUM_ARGS;
+	char** options = argv + NUM_ARGS;
+
+	converter.ConvertTextureWIC2DDS(argv[FILE_PATH], numOptions, options);
 
 	cout << "Loading " << argv[FILE_PATH] << endl;
 

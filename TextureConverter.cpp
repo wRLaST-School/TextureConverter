@@ -3,10 +3,12 @@
 
 using namespace DirectX;
 
-void TextureConverter::ConvertTextureWIC2DDS(const std::string& filePath)
+void TextureConverter::ConvertTextureWIC2DDS(const std::string& filePath, int numOptions, char* options[])
 {
 	//テクスチャ読み込み
 	LoadWICTexture(filePath);
+
+	SaveDDSTextureToFile(numOptions, options);
 }
 
 void TextureConverter::LoadWICTexture(const std::string& filePath)
@@ -18,8 +20,6 @@ void TextureConverter::LoadWICTexture(const std::string& filePath)
 	assert(SUCCEEDED(hr));
 
 	SeparatePath(path);
-
-	SaveDDSTextureToFile();
 }
 
 void TextureConverter::SeparatePath(const std::wstring& filePath)
@@ -78,11 +78,21 @@ void TextureConverter::SeparatePath(const std::wstring& filePath)
 	return;
 }
 
-void TextureConverter::SaveDDSTextureToFile()
+void TextureConverter::SaveDDSTextureToFile(int numOptions, char* options[])
 {
 	ScratchImage mipChain;
 
-	HRESULT hr = GenerateMipMaps(scratchImage_.GetImages(), scratchImage_.GetImageCount(), scratchImage_.GetMetadata(), TEX_FILTER_DEFAULT, 0, mipChain);
+	uint32_t mipLevel = 0;
+
+	for (int i = 0; i < numOptions; i++)
+	{
+		if (std::string(options[i]) == "-ml") {
+			mipLevel = std::stoi(options[i + 1]);
+			break;
+		}
+	}
+
+	HRESULT hr = GenerateMipMaps(scratchImage_.GetImages(), scratchImage_.GetImageCount(), scratchImage_.GetMetadata(), TEX_FILTER_DEFAULT, mipLevel, mipChain);
 
 	if (SUCCEEDED(hr))
 	{
