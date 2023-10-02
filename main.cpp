@@ -11,8 +11,6 @@ int main(int argc, char* argv[]) {
 		cout << argv[i] << endl;
 	}
 
-	cout << endl;
-
 	system("pause");
 	
 	return 0;
